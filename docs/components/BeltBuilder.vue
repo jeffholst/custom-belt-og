@@ -1,5 +1,5 @@
 <template>
-  <SVGBelt :belt-props="belt" />
+  <CustomBelt :belt-props="belt" />
   <div>
     <input v-if="colorCount > 0" class="colorSwatch" type="color" v-model="color1" />
     <input v-if="colorCount > 1" class="colorSwatch" type="color" v-model="color2" />
@@ -18,7 +18,7 @@
       <SelectControl
         label="Belt"
         :available-options="ibjjfSystem.belts"
-        :selected-option="beltTypeIBJJF"
+        :selected-option="selectedIBJJFBelt"
         :callback="pickBeltIBJJF"
       />
     </div>
@@ -26,15 +26,15 @@
       <SelectControl
         label="Belt"
         :available-options="beltTypes"
-        :selected-option="beltTypeCustom"
+        :selected-option="selectedCustomBelt"
         :callback="pickBeltCustom"
       />
     </div>
     <div class="control">
       <SelectControl
-        label="Strips"
+        label="Stripes"
         :available-options="stripesAvailable"
-        :selected-option="stripesSelected"
+        :selected-option="selectedStripeCount"
         :callback="updateStripeCount"
       />
     </div>
@@ -45,7 +45,7 @@
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue';
 import {
-  SVGBelt,
+  CustomBelt,
   getPredefinedBelt,
   beltTypes,
   getRandomBelt,
@@ -53,7 +53,7 @@ import {
   BeltSystem,
   type Belt,
   type BeltTypes
-} from 'vue-svg-belt';
+} from 'vue-custom-belt';
 import CopyToClipboard from './CopyToClipboard.vue';
 import SelectControl from './SelectControl.vue';
 
@@ -64,22 +64,22 @@ const beltGroups = [
   { name: 'Custom', value: 1 },
   { name: 'Random', value: 2 }
 ];
+const belt = ref();
 const color1 = ref('#FF0000');
 const color2 = ref('#FFFFFF');
 const color3 = ref('#0000FF');
-const beltTypeCustom = ref('Striped' as BeltTypes);
-const beltTypeIBJJF = ref('White');
-const belt = ref();
 const colorCount = ref(0);
+const selectedCustomBelt = ref('Striped' as BeltTypes);
+const selectedIBJJFBelt = ref('White');
 const selectedBeltGroup = ref(0);
-const stripesSelected = ref(0);
+const selectedStripeCount = ref(0);
 const stripesAvailable = ref();
 
 const updateBeltCustom = () => {
   belt.value = getPredefinedBelt(
     0,
     'Belt Name',
-    beltTypeCustom.value,
+    selectedCustomBelt.value,
     color1.value,
     color2.value,
     color3.value,
@@ -91,7 +91,7 @@ const updateBeltCustom = () => {
     '',
     '',
     '#FFFFFF',
-    stripesSelected.value,
+    selectedStripeCount.value,
     'Right',
     0,
     10,
@@ -115,16 +115,19 @@ watch(color3, () => {
 });
 
 const pickBeltIBJJF = (newBeltName: string) => {
-  beltTypeIBJJF.value = newBeltName;
+  selectedIBJJFBelt.value = newBeltName;
   setStripeSelect();
-  const newBelt = ibjjfSystem.getBeltPropsByName(beltTypeIBJJF.value, stripesSelected.value);
+  const newBelt = ibjjfSystem.getBeltPropsByName(
+    selectedIBJJFBelt.value,
+    selectedStripeCount.value
+  );
   belt.value = newBelt;
   colorCount.value = 0;
 };
 
 const pickBeltCustom = (newBeltType: BeltTypes) => {
   setColorCount(newBeltType);
-  beltTypeCustom.value = newBeltType;
+  selectedCustomBelt.value = newBeltType;
   updateBeltCustom();
 };
 
@@ -148,7 +151,7 @@ const setColorCount = (beltType: BeltTypes) => {
 };
 
 const updateStripeCount = (newValue: number) => {
-  stripesSelected.value = newValue;
+  selectedStripeCount.value = newValue;
   beltGroupChanged(selectedBeltGroup.value);
 };
 
@@ -157,10 +160,10 @@ const beltGroupChanged = (groupValue: number) => {
   setStripeSelect();
   if (groupValue === 0) {
     // IBJJF Belts
-    pickBeltIBJJF(beltTypeIBJJF.value);
+    pickBeltIBJJF(selectedIBJJFBelt.value);
   } else if (groupValue === 1) {
     // Custom Belts
-    pickBeltCustom(beltTypeCustom.value);
+    pickBeltCustom(selectedCustomBelt.value);
     updateBeltCustom();
   } else if (groupValue === 2) {
     // Random Belts
@@ -168,7 +171,7 @@ const beltGroupChanged = (groupValue: number) => {
     belt.value = getRandomBelt(
       true,
       false,
-      stripesSelected.value,
+      selectedStripeCount.value,
       'Right',
       'transition: all 1.0s ease-in-out;',
       ['Solid', 'Striped', 'Coral', 'Split', 'Checkered', 'Crazy'],
@@ -182,7 +185,7 @@ const setStripeSelect = () => {
   let ary: Number[] = [];
   switch (selectedBeltGroup.value) {
     case 0: // IBJJF
-      myBelt = ibjjfSystem.getBeltByName(beltTypeIBJJF.value);
+      myBelt = ibjjfSystem.getBeltByName(selectedIBJJFBelt.value);
       if (myBelt !== undefined) {
         for (let i = myBelt.minStripes; i <= myBelt.maxStripes; i++) {
           ary.push(i);
@@ -195,17 +198,17 @@ const setStripeSelect = () => {
       stripesAvailable.value = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
       break;
   }
-  if (stripesSelected.value > stripesAvailable.value[stripesAvailable.value.length - 1]) {
-    stripesSelected.value = stripesAvailable.value[0];
-  } else if (stripesSelected.value < stripesAvailable.value[0]) {
-    stripesSelected.value = stripesAvailable.value[0];
+  if (selectedStripeCount.value > stripesAvailable.value[stripesAvailable.value.length - 1]) {
+    selectedStripeCount.value = stripesAvailable.value[0];
+  } else if (selectedStripeCount.value < stripesAvailable.value[0]) {
+    selectedStripeCount.value = stripesAvailable.value[0];
   }
 };
 
 const allowCopyToClipboard = computed(() => {
   if (selectedBeltGroup.value === 0) {
     return true;
-  } else if (selectedBeltGroup.value === 1 && beltTypeCustom.value !== 'Crazy') {
+  } else if (selectedBeltGroup.value === 1 && selectedCustomBelt.value !== 'Crazy') {
     return true;
   }
   return false;
@@ -216,10 +219,12 @@ const copyURLToClipboard = () => {
     let url = window.location.origin + window.location.pathname;
     let parm = '';
     if (selectedBeltGroup.value === 0) {
-      const belt = ibjjfSystem.getBeltByName(beltTypeIBJJF.value);
-      parm = `0|${belt.id}|${stripesSelected.value}`;
+      const belt = ibjjfSystem.getBeltByName(selectedIBJJFBelt.value);
+      if (belt) {
+        parm = `0|${belt.id}|${selectedStripeCount.value}`;
+      }
     } else if (selectedBeltGroup.value === 1) {
-      parm = `1|${beltTypeCustom.value}|${stripesSelected.value}|${color1.value}|${color2.value}|${color3.value}`;
+      parm = `1|${selectedCustomBelt.value}|${selectedStripeCount.value}|${color1.value}|${color2.value}|${color3.value}`;
     }
     url = `${url}?belt=${encodeURIComponent(parm)}`;
     copyToClipboard(url);
@@ -249,22 +254,22 @@ if (value) {
     selectedBeltGroup.value = 0;
     const belt = ibjjfSystem.getBeltById(Number(parms[1]));
     if (belt !== undefined) {
-      beltTypeIBJJF.value = belt.name;
-      stripesSelected.value = parseInt(parms[2]);
-      pickBeltIBJJF(beltTypeIBJJF.value);
+      selectedIBJJFBelt.value = belt.name;
+      selectedStripeCount.value = parseInt(parms[2]);
+      pickBeltIBJJF(selectedIBJJFBelt.value);
     }
   } else if (parms && parms.length === 6 && parms[0] === '1') {
     selectedBeltGroup.value = 1;
-    beltTypeCustom.value = parms[1] as BeltTypes;
-    stripesSelected.value = parseInt(parms[2]);
+    selectedCustomBelt.value = parms[1] as BeltTypes;
+    selectedStripeCount.value = parseInt(parms[2]);
     color1.value = parms[3];
     color2.value = parms[4];
     color3.value = parms[5];
     setStripeSelect();
-    pickBeltCustom(beltTypeCustom.value);
+    pickBeltCustom(selectedCustomBelt.value);
   }
 } else {
-  pickBeltIBJJF(beltTypeIBJJF.value);
+  pickBeltIBJJF(selectedIBJJFBelt.value);
 }
 </script>
 
