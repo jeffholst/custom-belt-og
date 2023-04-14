@@ -4,6 +4,7 @@ import { version } from '../../package.json';
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: `Custom Belt v. ${version}`,
+  base: '/custom-belt/',
   description: 'A VitePress Site',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
