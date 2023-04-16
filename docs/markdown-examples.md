@@ -1,5 +1,7 @@
 # Markdown Extension Examples
 
+<div id="stackblitz"></div>
+
 This page demonstrates some of the built-in markdown extensions provided by VitePress.
 
 ## Syntax Highlighting
@@ -83,3 +85,19 @@ This is a details block.
 ## More
 
 Check out the documentation for the [full list of markdown extensions](https://vitepress.dev/guide/markdown).
+
+<script setup lang="ts">
+import { onMounted } from 'vue'
+import sdk from '@stackblitz/sdk'
+
+onMounted(() => {
+  sdk.embedProjectId(
+    'stackblitz',
+    'vue3-script-setup-with-vite-nd7wav',
+    {
+      forceEmbedLayout: true,
+      openFile: 'src/App.vue',
+    }
+  )
+})
+</script>
