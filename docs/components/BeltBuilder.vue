@@ -39,6 +39,9 @@
       />
     </div>
   </div>
+  <div v-if="selectedBeltGroup === 2" class="controls">
+    <CheckedBeltsGroup :callback="updateCheckedRandomBelts" />
+  </div>
   <CopyToClipboard :allowCopyToClipboard="allowCopyToClipboard" :callback="copyURLToClipboard" />
 </template>
 
@@ -56,6 +59,7 @@ import {
 } from 'vue-custom-belt';
 import CopyToClipboard from './CopyToClipboard.vue';
 import SelectControl from './SelectControl.vue';
+import CheckedBeltsGroup from './CheckedBeltsGroup.vue';
 
 const ibjjfSystem = new BeltSystem(ibjjfJSON);
 
@@ -64,6 +68,11 @@ const beltGroups = [
   { name: 'Custom', value: 1 },
   { name: 'Random', value: 2 }
 ];
+
+const checkedRandomBelts = ref([] as Array<BeltTypes>);
+
+beltTypes.forEach((beltType) => checkedRandomBelts.value.push(beltType));
+
 const belt = ref();
 const color1 = ref('#FF0000');
 const color2 = ref('#FFFFFF');
@@ -174,7 +183,7 @@ const beltGroupChanged = (groupValue: number) => {
       selectedStripeCount.value,
       'Right',
       'transition: all 1.0s ease-in-out;',
-      ['Solid', 'Striped', 'Coral', 'Split', 'Checkered', 'Crazy'],
+      checkedRandomBelts.value,
       2000
     );
   }
@@ -240,6 +249,11 @@ const copyToClipboard = async (text: string) => {
       console.error('Failed to copy text: ', err);
     }
   }
+};
+
+const updateCheckedRandomBelts = (checkedItems: Array<BeltTypes>) => {
+  checkedRandomBelts.value = checkedItems;
+  beltGroupChanged(selectedBeltGroup.value);
 };
 
 const params: any = new Proxy(new URLSearchParams(window.location.search), {
