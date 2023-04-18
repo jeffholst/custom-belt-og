@@ -38,8 +38,17 @@
         :callback="updateStripeCount"
       />
     </div>
+    <div v-if="selectedBeltGroup === 2" class="control">
+      <SliderControl
+        label="Refresh"
+        :min="1"
+        :max="10"
+        :value="transitionDelay / 1000"
+        :callback="updateTransitionSpeed"
+      />
+    </div>
   </div>
-  <div v-if="selectedBeltGroup === 2" class="controls">
+  <div v-if="selectedBeltGroup === 2" class="checkboxes">
     <CheckedBeltsGroup :callback="updateCheckedRandomBelts" />
   </div>
   <CopyToClipboard :allowCopyToClipboard="allowCopyToClipboard" :callback="copyURLToClipboard" />
@@ -60,6 +69,7 @@ import {
 import CopyToClipboard from './CopyToClipboard.vue';
 import SelectControl from './SelectControl.vue';
 import CheckedBeltsGroup from './CheckedBeltsGroup.vue';
+import SliderControl from './SliderControl.vue';
 
 const ibjjfSystem = new BeltSystem(ibjjfJSON);
 
@@ -70,7 +80,7 @@ const beltGroups = [
 ];
 
 const checkedRandomBelts = ref([] as Array<BeltTypes>);
-
+let transitionDelay = 3000;
 beltTypes.forEach((beltType) => checkedRandomBelts.value.push(beltType));
 
 const belt = ref();
@@ -110,7 +120,6 @@ const updateBeltCustom = () => {
     0
   );
 };
-
 watch(color1, () => {
   updateBeltCustom();
 });
@@ -184,7 +193,7 @@ const beltGroupChanged = (groupValue: number) => {
       'Right',
       'transition: all 1.0s ease-in-out;',
       checkedRandomBelts.value,
-      2000
+      transitionDelay
     );
   }
 };
@@ -256,6 +265,11 @@ const updateCheckedRandomBelts = (checkedItems: Array<BeltTypes>) => {
   beltGroupChanged(selectedBeltGroup.value);
 };
 
+const updateTransitionSpeed = (newSpeed: number) => {
+  transitionDelay = newSpeed * 1000;
+  beltGroupChanged(selectedBeltGroup.value);
+};
+
 const params: any = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop: string) => searchParams.get(prop)
 });
@@ -308,17 +322,37 @@ if (value) {
   padding-top: 20px;
 }
 
-/*Screen larger than 600px? 2 column*/
-@media (min-width: 600px) {
-  .controls {
+.checkboxes {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1rem;
+  padding-top: 20px;
+}
+
+@media all and (min-width: 300px) {
+  .checkboxes {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/*Screen larger than 900px? 3 columns*/
+@media (min-width: 600px) {
+  /*Screen larger than 600px? 2 column*/
+  .controls {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .checkboxes {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 @media (min-width: 900px) {
+  /*Screen larger than 900px? 3 columns*/
   .controls {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .checkboxes {
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 
