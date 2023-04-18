@@ -12,14 +12,16 @@
         :available-options="beltGroups"
         :selected-option="selectedBeltGroup"
         :callback="beltGroupChanged"
+        :show-nav="false"
       />
     </div>
-    <div v-if="selectedBeltGroup === 0" class="control">
+    <div v-if="selectedBeltGroup === 0" class="controlWithIcon">
       <SelectControl
         label="Belt"
         :available-options="ibjjfSystem.belts"
         :selected-option="selectedIBJJFBelt"
         :callback="pickBeltIBJJF"
+        :show-nav="true"
       />
     </div>
     <div v-else-if="selectedBeltGroup === 1" class="control">
@@ -28,6 +30,7 @@
         :available-options="beltTypes"
         :selected-option="selectedCustomBelt"
         :callback="pickBeltCustom"
+        :show-nav="false"
       />
     </div>
     <div class="control">
@@ -36,6 +39,7 @@
         :available-options="stripesAvailable"
         :selected-option="selectedStripeCount"
         :callback="updateStripeCount"
+        :show-nav="false"
       />
     </div>
     <div v-if="selectedBeltGroup === 2" class="control">
@@ -302,6 +306,18 @@ if (value) {
 </script>
 
 <style scoped>
+.controlWithIcon {
+  background-color: #f6f6f7;
+  color: white;
+  padding: 13px;
+  height: 4rem;
+  border-radius: 0.5rem;
+}
+
+.dark .controlWithIcon {
+  background-color: #434245;
+}
+
 .control {
   background-color: #f6f6f7;
   color: white;
