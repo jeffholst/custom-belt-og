@@ -30,9 +30,7 @@ After cloning the repo, run:
 $ npm install
 ```
 
-### Setup Dev Environment
-
-The easiest way to start testing out VitePress is to tweak the VitePress docs. You may run `pnpm run docs` to boot up VitePress documentation site locally, with live reloading of the source code.
+### Run the project
 
 ```sh
 npm run dev
