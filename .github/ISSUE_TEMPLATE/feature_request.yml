@@ -35,9 +35,9 @@ body:
       label: Validations
       description: Before submitting the issue, please make sure you do the following
       options:
-        - label: Follow our [Code of Conduct](https://vuejs.org/about/coc.html)
+        - label: Follow the [Code of Conduct](https://github.com/jeffholst/custom-belt/blob/main/.github/CODE_OF_CONDUCT.md).
           required: true
-        - label: Read the [docs](https://vitepress.dev).
+        - label: Read the [docs](https://jeffholst.github.io/custom-belt/).
           required: true
         - label: Read the [Contributing Guidelines](https://github.com/vuejs/vitepress/blob/main/.github/contributing.md).
           required: true
