@@ -1,19 +1,17 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
+
+title: Custom Belt 
+titleTemplate: Demo and Documenttion for vue-custom-belt 
+
+hero:
+  name: Custom Belt
+  tagline: Vue 3 component to easily create any style martial arts belt in SVG format 
+  actions:
+    - theme: brand
+      text: Demo 
+      link: /demo
+    - theme: alt
+      text: Documentation 
+      link: /documentation 
 ---
-
-<main> <!-- markdownlint-disable-line MD041 -->
-  <BeltBuilder />
-</main>
-
-<script setup lang="ts">
-import BeltBuilder from './components/BeltBuilder.vue'
-</script>
-
-<style scoped>
-main {
-  padding: 20px;
-  text-align: center;
-}
-</style>
