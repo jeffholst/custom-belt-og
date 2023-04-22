@@ -3,26 +3,36 @@ import { version } from '../../package.json';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: `Custom Belt v. ${version}`,
+  title: `Custom Belt`,
   base: '/custom-belt/',
-  description: 'A VitePress Site',
+  description: 'Custom Belt demo and documentation',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
-    ],
+    nav: [{ text: 'Documentation', link: 'documentation' }],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Overview',
+        link: '/'
+      },
+      {
+        text: 'Demo',
+        link: '/demo'
+      },
+      {
+        text: 'Documentation',
+        link: '/documentation',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Ex 1', link: '/' },
+          { text: 'Ex 2', link: '/' },
+          { text: 'Ex 3', link: '/' }
         ]
+      },
+      {
+        text: `version ${version}`
       }
     ],
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }]
+    socialLinks: [{ icon: 'github', link: 'https://github.com/jeffholst/custom-belt' }]
   }
 });
