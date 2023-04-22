@@ -16,9 +16,11 @@ hero:
       link: /documentation 
 ---
 
-<main> <!-- markdownlint-disable-line MD041 -->
-  <AnimatedBelts style="width: 500px;"/>
-</main>
+<ClientSideOnly> <!-- markdownlint-disable-line MD041 -->
+  <main>
+    <AnimatedBelts style="width: 500px;"/>
+  </main>
+</ClientSideOnly>
 
 <script setup lang="ts">
 import AnimatedBelts from './components/AnimatedBelts.vue'
