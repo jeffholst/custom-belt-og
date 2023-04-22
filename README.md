@@ -1,6 +1,21 @@
-# belt-builder
+# Custom Belt
 
-This template should help get you started developing with Vue 3 in Vite.
+<h1 align="center">
+ <br>
+ <br>
+  <img src="https://jeffholst.github.io/custom-belt/belts-animated.gif" alt="Animated Belts">
+ <br>
+ <br>
+ <br>
+</h1>
+
+👋 Howdy and welcome!
+
+**Custom Belt** is the [demo](https://jeffholst.github.io/custom-belt/) and [documentation](https://jeffholst.github.io/custom-belt/documentation) project for [vue-custom-belt](https://github.com/jeffholst/vue-custom-belt).
+
+Use the [vue-custom-belt](https://www.npmjs.com/package/vue-custom-belt) NPM in a Vue 3 project to easily create any style martial arts belt in SVG format.
+
+Click [here](https://github.com/jeffholst/vue-custom-belt) for the [vue-custom-belt](https://github.com/jeffholst/vue-custom-belt) repo.
 
 ## Recommended IDE Setup
 
