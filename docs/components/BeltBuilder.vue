@@ -274,34 +274,36 @@ const updateTransitionSpeed = (newSpeed: number) => {
   beltGroupChanged(selectedBeltGroup.value);
 };
 
-const params: any = new Proxy(new URLSearchParams(window.location.search), {
-  get: (searchParams, prop: string) => searchParams.get(prop)
-});
-// Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
-let value = params.belt; // "some_value"
+if (typeof window !== 'undefined') {
+  const params: any = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop: string) => searchParams.get(prop)
+  });
+  // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+  let value = params.belt; // "some_value"
 
-if (value) {
-  const parms = value.split('|');
-  if (parms && parms.length === 3 && parms[0] === '0') {
-    selectedBeltGroup.value = 0;
-    const belt = ibjjfSystem.getBeltById(Number(parms[1]));
-    if (belt !== undefined) {
-      selectedIBJJFBelt.value = belt.name;
+  if (value) {
+    const parms = value.split('|');
+    if (parms && parms.length === 3 && parms[0] === '0') {
+      selectedBeltGroup.value = 0;
+      const belt = ibjjfSystem.getBeltById(Number(parms[1]));
+      if (belt !== undefined) {
+        selectedIBJJFBelt.value = belt.name;
+        selectedStripeCount.value = parseInt(parms[2]);
+        pickBeltIBJJF(selectedIBJJFBelt.value);
+      }
+    } else if (parms && parms.length === 6 && parms[0] === '1') {
+      selectedBeltGroup.value = 1;
+      selectedCustomBelt.value = parms[1] as BeltTypes;
       selectedStripeCount.value = parseInt(parms[2]);
-      pickBeltIBJJF(selectedIBJJFBelt.value);
+      color1.value = parms[3];
+      color2.value = parms[4];
+      color3.value = parms[5];
+      setStripeSelect();
+      pickBeltCustom(selectedCustomBelt.value);
     }
-  } else if (parms && parms.length === 6 && parms[0] === '1') {
-    selectedBeltGroup.value = 1;
-    selectedCustomBelt.value = parms[1] as BeltTypes;
-    selectedStripeCount.value = parseInt(parms[2]);
-    color1.value = parms[3];
-    color2.value = parms[4];
-    color3.value = parms[5];
-    setStripeSelect();
-    pickBeltCustom(selectedCustomBelt.value);
+  } else {
+    pickBeltIBJJF(selectedIBJJFBelt.value);
   }
-} else {
-  pickBeltIBJJF(selectedIBJJFBelt.value);
 }
 </script>
 

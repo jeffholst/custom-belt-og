@@ -16,19 +16,21 @@ hero:
       link: /documentation 
 ---
 
-<ClientSideOnly> <!-- markdownlint-disable-line MD041 -->
-  <main>
-    <AnimatedBelts style="width: 500px;"/>
-  </main>
-</ClientSideOnly>
+<template style="display: inline;">
+  <AnimatedBelts id="animatedBelt" style="padding-top: 50px; max-width: 600px;"/>
+</template>
 
 <script setup lang="ts">
-import AnimatedBelts from './components/AnimatedBelts.vue'
+import { onMounted } from 'vue';
+import AnimatedBelts from './components/AnimatedBelts.vue';
+
+onMounted(() => {
+  // Move the animated belt to the main element
+  const mains = document.getElementsByClassName('main');
+  const belt = document.getElementById('animatedBelt');
+  mains[0].appendChild(belt);
+})
 </script>
 
 <style scoped>
-main {
-  padding-left: 225px;
-  text-align: center;
-}
 </style>
