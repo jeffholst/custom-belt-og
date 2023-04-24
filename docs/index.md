@@ -44,6 +44,3 @@ onMounted(() => {
   mains[0].appendChild(belt);
 })
 </script>
-
-<style scoped>
-</style>

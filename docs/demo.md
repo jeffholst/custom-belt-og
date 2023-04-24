@@ -10,7 +10,7 @@ layout: home
 import BeltBuilder from './components/BeltBuilder.vue'
 </script>
 
-<style scoped>
+<style module>
 main {
   padding: 20px;
   text-align: center;
