@@ -6,6 +6,7 @@ export default defineConfig({
   title: `Custom Belt`,
   base: '/custom-belt/',
   description: 'Custom Belt demo and documentation',
+  lastUpdated: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [{ text: 'Documentation', link: 'documentation' }],
@@ -32,7 +33,19 @@ export default defineConfig({
         text: `version ${version}`
       }
     ],
+    search: {
+      provider: 'local'
+    },
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/jeffholst/custom-belt' }]
+    socialLinks: [{ icon: 'github', link: 'https://github.com/jeffholst/custom-belt' }],
+
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2023-present Jeff Holst'
+    },
+
+    editLink: {
+      pattern: 'https://github.com/jeffholst/custom-belt/edit/main/docs/:path'
+    }
   }
 });
