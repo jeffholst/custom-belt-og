@@ -9,24 +9,30 @@ export default defineConfig({
   lastUpdated: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [{ text: 'Documentation', link: 'documentation' }],
+    nav: [
+      { text: 'Demo', link: '/demo' },
+      { text: 'Documentation', link: '/what-is-custom-belt' }
+    ],
 
     sidebar: [
       {
-        text: 'Overview',
-        link: '/'
-      },
-      {
-        text: 'Demo',
-        link: '/demo'
-      },
-      {
         text: 'Documentation',
-        link: '/documentation',
         items: [
-          { text: 'Ex 1', link: '/' },
-          { text: 'Ex 2', link: '/' },
-          { text: 'Ex 3', link: '/' }
+          {
+            text: 'Introduction',
+            items: [
+              { text: 'What is Custom Belt', link: '/what-is-custom-belt' },
+              { text: 'Quick Start', link: '/quick-start' }
+            ]
+          },
+          {
+            text: 'Reference',
+            items: [
+              { text: 'Examples', link: '/examples' },
+              { text: 'API', link: '/api' },
+              { text: 'Belt System', link: '/belt-system' }
+            ]
+          }
         ]
       },
       {
