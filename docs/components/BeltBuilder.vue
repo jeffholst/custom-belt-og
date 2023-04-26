@@ -1,6 +1,6 @@
 <template>
   <CustomBelt :belt-props="belt" />
-  <div>
+  <div style="text-align: center">
     <input v-if="colorCount > 0" class="colorSwatch" type="color" v-model="color1" />
     <input v-if="colorCount > 1" class="colorSwatch" type="color" v-model="color2" />
     <input v-if="colorCount > 2" class="colorSwatch" type="color" v-model="color3" />
@@ -27,7 +27,7 @@
     <div v-else-if="selectedBeltGroup === 1" class="control">
       <SelectControl
         label="Belt"
-        :available-options="beltTypes"
+        :available-options="Object.keys(BeltType)"
         :selected-option="selectedCustomBelt"
         :callback="pickBeltCustom"
         :show-nav="false"
@@ -63,12 +63,11 @@ import { ref, watch, computed } from 'vue';
 import {
   CustomBelt,
   getPredefinedBelt,
-  beltTypes,
   getRandomBelt,
   ibjjfJSON,
   BeltSystem,
   type Belt,
-  type BeltTypes
+  BeltType
 } from 'vue-custom-belt';
 import CopyToClipboard from './CopyToClipboard.vue';
 import SelectControl from './SelectControl.vue';
@@ -83,16 +82,18 @@ const beltGroups = [
   { name: 'Random', value: 2 }
 ];
 
-const checkedRandomBelts = ref([] as Array<BeltTypes>);
+const checkedRandomBelts = ref([] as Array<BeltType>);
 let transitionDelay = 3000;
-beltTypes.forEach((beltType) => checkedRandomBelts.value.push(beltType));
+for (const beltType in BeltType) {
+  checkedRandomBelts.value.push(beltType as BeltType);
+}
 
 const belt = ref();
 const color1 = ref('#FF0000');
 const color2 = ref('#FFFFFF');
 const color3 = ref('#0000FF');
 const colorCount = ref(0);
-const selectedCustomBelt = ref('Striped' as BeltTypes);
+const selectedCustomBelt = ref('Striped' as BeltType);
 const selectedIBJJFBelt = ref('White');
 const selectedBeltGroup = ref(0);
 const selectedStripeCount = ref(0);
@@ -147,13 +148,13 @@ const pickBeltIBJJF = (newBeltName: string) => {
   colorCount.value = 0;
 };
 
-const pickBeltCustom = (newBeltType: BeltTypes) => {
+const pickBeltCustom = (newBeltType: BeltType) => {
   setColorCount(newBeltType);
   selectedCustomBelt.value = newBeltType;
   updateBeltCustom();
 };
 
-const setColorCount = (beltType: BeltTypes) => {
+const setColorCount = (beltType: BeltType) => {
   switch (beltType) {
     case 'Solid':
       colorCount.value = 1;
@@ -264,7 +265,7 @@ const copyToClipboard = async (text: string) => {
   }
 };
 
-const updateCheckedRandomBelts = (checkedItems: Array<BeltTypes>) => {
+const updateCheckedRandomBelts = (checkedItems: Array<BeltType>) => {
   checkedRandomBelts.value = checkedItems;
   beltGroupChanged(selectedBeltGroup.value);
 };
@@ -293,7 +294,7 @@ if (typeof window !== 'undefined') {
       }
     } else if (parms && parms.length === 6 && parms[0] === '1') {
       selectedBeltGroup.value = 1;
-      selectedCustomBelt.value = parms[1] as BeltTypes;
+      selectedCustomBelt.value = parms[1] as BeltType;
       selectedStripeCount.value = parseInt(parms[2]);
       color1.value = parms[3];
       color2.value = parms[4];
@@ -338,6 +339,7 @@ if (typeof window !== 'undefined') {
   display: grid;
   grid-gap: 1rem;
   padding-top: 20px;
+  text-align: center;
 }
 
 .checkboxes {
@@ -346,6 +348,7 @@ if (typeof window !== 'undefined') {
   display: grid;
   grid-gap: 1rem;
   padding-top: 20px;
+  text-align: center;
 }
 
 @media all and (min-width: 300px) {
