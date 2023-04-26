@@ -16,27 +16,49 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Documentation',
+        text: 'Introduction',
         items: [
-          {
-            text: 'Introduction',
-            items: [
-              { text: 'What is Custom Belt', link: '/what-is-custom-belt' },
-              { text: 'Quick Start', link: '/quick-start' }
-            ]
-          },
-          {
-            text: 'Reference',
-            items: [
-              { text: 'Examples', link: '/examples' },
-              { text: 'API', link: '/api' },
-              { text: 'Belt System', link: '/belt-system' }
-            ]
-          }
+          { text: 'What is Custom Belt?', link: '/introduction/what-is-custom-belt' },
+          { text: 'Quick Start', link: '/introduction/quick-start' },
+          { text: 'Examples', link: '/introduction/examples' }
         ]
       },
       {
-        text: `version ${version}`
+        text: 'API',
+        items: [
+          {
+            text: 'Classes',
+            collapsed: true,
+            items: [{ text: 'BeltSystem', link: '/api/classes/belt-system' }]
+          },
+          {
+            text: 'Enums',
+            collapsed: true,
+            items: [
+              { text: 'Enum 1', link: '/api/enums/enum1' },
+              { text: 'Enum 2', link: '/api/enums/enum2' },
+              { text: 'Enum 3', link: '/api/enums/enum3' }
+            ]
+          },
+          {
+            text: 'Functions',
+            collapsed: true,
+            items: [
+              { text: 'Function 1', link: '/api/functions/function1' },
+              { text: 'Function 2', link: '/api/functions/function2' },
+              { text: 'Function 3', link: '/api/functions/function3' }
+            ]
+          },
+          {
+            text: 'Interfaces',
+            collapsed: true,
+            items: [
+              { text: 'Interface 1', link: '/api/interfaces/interface1' },
+              { text: 'Interface 2', link: '/api/interfaces/interface2' },
+              { text: 'Interface 3', link: '/api/interfaces/interface3' }
+            ]
+          }
+        ]
       }
     ],
     search: {
