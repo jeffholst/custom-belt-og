@@ -11,33 +11,56 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Demo', link: '/demo' },
-      { text: 'Documentation', link: '/what-is-custom-belt' }
+      { text: 'Documentation', link: '/introduction/what-is-custom-belt' }
     ],
 
     sidebar: [
       {
-        text: 'Documentation',
+        text: 'Introduction',
+        items: [
+          { text: 'What is Custom Belt?', link: '/introduction/what-is-custom-belt' },
+          { text: 'Quick Start', link: '/introduction/quick-start' },
+          { text: 'Examples', link: '/introduction/examples' }
+        ]
+      },
+      {
+        text: 'API',
         items: [
           {
-            text: 'Introduction',
+            text: 'Classes',
+            collapsed: true,
+            items: [{ text: 'BeltSystem', link: '/api/classes/belt-system' }]
+          },
+          {
+            text: 'Enums',
+            collapsed: true,
             items: [
-              { text: 'What is Custom Belt', link: '/what-is-custom-belt' },
-              { text: 'Quick Start', link: '/quick-start' }
+              { text: 'Enum 1', link: '/api/enums/enum1' },
+              { text: 'Enum 2', link: '/api/enums/enum2' },
+              { text: 'Enum 3', link: '/api/enums/enum3' }
             ]
           },
           {
-            text: 'Reference',
+            text: 'Functions',
+            collapsed: true,
             items: [
-              { text: 'Examples', link: '/examples' },
-              { text: 'API', link: '/api' },
-              { text: 'Belt System', link: '/belt-system' }
+              { text: 'Function 1', link: '/api/functions/function1' },
+              { text: 'Function 2', link: '/api/functions/function2' },
+              { text: 'Function 3', link: '/api/functions/function3' }
+            ]
+          },
+          {
+            text: 'Interfaces',
+            collapsed: true,
+            items: [
+              { text: 'Interface 1', link: '/api/interfaces/interface1' },
+              { text: 'Interface 2', link: '/api/interfaces/interface2' },
+              { text: 'Interface 3', link: '/api/interfaces/interface3' }
             ]
           }
         ]
       },
-      {
-        text: `version ${version}`
-      }
+      { text: `Version: ${version}` }
     ],
     search: {
       provider: 'local'

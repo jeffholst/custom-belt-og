@@ -10,8 +10,8 @@
 </h1>
 
 👋 Howdy and welcome!
- 
-If you're interested in the [demo](https://jeffholst.github.io/custom-belt/) and [documentation](https://jeffholst.github.io/custom-belt/documentation) project for [vue-custom-belt](https://github.com/jeffholst/vue-custom-belt) then you are in the right place. Otherwise you may want to visit the [vue-custom-belt](https://github.com/jeffholst/vue-custom-belt) repo.
+
+If you're interested in the [demo](https://jeffholst.github.io/custom-belt/demo.html) and [documentation](https://jeffholst.github.io/custom-belt/introduction/what-is-custom-belt.html) project for [vue-custom-belt](https://github.com/jeffholst/vue-custom-belt) then you are in the right place. Otherwise you may want to visit the [vue-custom-belt](https://github.com/jeffholst/vue-custom-belt) repo.
 
 [vue-custom-belt](https://github.com/jeffholst/vue-custom-belt) is a Vue 3 component to easily create any style martial arts belt in SVG format.
 
