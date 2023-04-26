@@ -11,7 +11,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Demo', link: '/demo' },
-      { text: 'Documentation', link: '/what-is-custom-belt' }
+      { text: 'Documentation', link: '/introduction/what-is-custom-belt' }
     ],
 
     sidebar: [
