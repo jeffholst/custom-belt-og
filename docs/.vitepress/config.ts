@@ -59,7 +59,8 @@ export default defineConfig({
             ]
           }
         ]
-      }
+      },
+      { text: `Version: ${version}` }
     ],
     search: {
       provider: 'local'
