@@ -62,9 +62,9 @@
 import { ref, watch, computed } from 'vue';
 import {
   CustomBelt,
-  getPredefinedBelt,
-  getRandomBelt,
-  ibjjfJSON,
+  getBeltPredefined,
+  getBeltRandom,
+  BeltSystemJSON_IBJJF,
   BeltSystem,
   type Belt,
   BeltType
@@ -74,7 +74,7 @@ import SelectControl from './SelectControl.vue';
 import CheckedBeltsGroup from './CheckedBeltsGroup.vue';
 import SliderControl from './SliderControl.vue';
 
-const ibjjfSystem = new BeltSystem(ibjjfJSON);
+const ibjjfSystem = new BeltSystem(BeltSystemJSON_IBJJF);
 
 const beltGroups = [
   { name: 'IBJJF', value: 0 },
@@ -100,7 +100,7 @@ const selectedStripeCount = ref(0);
 const stripesAvailable = ref();
 
 const updateBeltCustom = () => {
-  belt.value = getPredefinedBelt(
+  belt.value = getBeltPredefined(
     0,
     'Belt Name',
     selectedCustomBelt.value,
@@ -191,7 +191,7 @@ const beltGroupChanged = (groupValue: number) => {
   } else if (groupValue === 2) {
     // Random Belts
     colorCount.value = 0;
-    belt.value = getRandomBelt(
+    belt.value = getBeltRandom(
       true,
       false,
       selectedStripeCount.value,
