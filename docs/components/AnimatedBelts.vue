@@ -3,13 +3,13 @@
 </template>
 
 <script setup lang="ts">
-import { CustomBelt, ibjjfJSON, BeltSystem } from 'vue-custom-belt';
+import { CustomBelt, BeltSystemJSON_IBJJF, BeltSystem, StripePosition } from 'vue-custom-belt';
 
-const ibjjfSystem: BeltSystem = new BeltSystem(ibjjfJSON);
+const ibjjfSystem: BeltSystem = new BeltSystem(BeltSystemJSON_IBJJF);
 const belts = ibjjfSystem.getBeltPropsByNames(
   ['White', 'Blue', 'Purple', 'Brown', 'Black'],
   0,
-  'Right',
+  StripePosition.Right,
   'transition: all 3.0s ease-in-out;',
   2000
 );
