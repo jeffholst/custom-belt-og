@@ -310,6 +310,7 @@ if (typeof window !== 'undefined') {
 
 <style scoped>
 .controlWithIcon {
+  min-width: 350px;
   background-color: #f6f6f7;
   color: white;
   padding: 13px;
