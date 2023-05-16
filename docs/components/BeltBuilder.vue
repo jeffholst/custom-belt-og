@@ -62,12 +62,13 @@
 import { ref, watch, computed } from 'vue';
 import {
   CustomBelt,
-  getBeltPredefined,
-  getBeltRandom,
+  getBeltProps,
+  getBeltPropsRandom,
   BeltSystemJSON_IBJJF,
   BeltSystem,
   type Belt,
-  BeltType
+  BeltType,
+  StripePosition
 } from 'vue-custom-belt';
 import CopyToClipboard from './CopyToClipboard.vue';
 import SelectControl from './SelectControl.vue';
@@ -100,7 +101,7 @@ const selectedStripeCount = ref(0);
 const stripesAvailable = ref();
 
 const updateBeltCustom = () => {
-  belt.value = getBeltPredefined(
+  belt.value = getBeltProps(
     0,
     'Belt Name',
     selectedCustomBelt.value,
@@ -191,11 +192,11 @@ const beltGroupChanged = (groupValue: number) => {
   } else if (groupValue === 2) {
     // Random Belts
     colorCount.value = 0;
-    belt.value = getBeltRandom(
+    belt.value = getBeltPropsRandom(
       true,
       false,
       selectedStripeCount.value,
-      'Right',
+      StripePosition.Right,
       'transition: all 1.0s ease-in-out;',
       checkedRandomBelts.value,
       transitionDelay
