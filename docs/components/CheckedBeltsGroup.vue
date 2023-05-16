@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { beltTypes } from 'vue-custom-belt';
+import { BeltType } from 'vue-custom-belt';
 
 const props = defineProps<{
   callback: Function;
@@ -8,7 +8,9 @@ const props = defineProps<{
 
 const checkedRandomBelts = ref([] as string[]);
 
-beltTypes.forEach((beltType) => checkedRandomBelts.value.push(beltType));
+for (const beltType in BeltType) {
+  checkedRandomBelts.value.push(beltType as BeltType);
+}
 
 const checkboxChanged = () => {
   props.callback(checkedRandomBelts.value);
@@ -16,7 +18,7 @@ const checkboxChanged = () => {
 </script>
 
 <template>
-  <div v-for="beltType in beltTypes" :key="beltType">
+  <div v-for="beltType in BeltType" :key="beltType">
     <label>
       {{ beltType }}
       <input
