@@ -1,3 +1,0 @@
-# Belt System
-
-Coming soon.
