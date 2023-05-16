@@ -27,7 +27,7 @@
     <div v-else-if="selectedBeltGroup === 1" class="control">
       <SelectControl
         label="Belt"
-        :available-options="availableBeltTypes"
+        :available-options="BeltTypeStandard"
         :selected-option="selectedCustomBelt"
         :callback="pickBeltCustom"
         :show-nav="false"
@@ -68,6 +68,8 @@ import {
   BeltSystem,
   type Belt,
   BeltType,
+  // @ts-ignore
+  BeltTypeStandard,
   StripePosition,
   getBeltColorCount
 } from 'vue-custom-belt';
@@ -221,12 +223,6 @@ const allowCopyToClipboard = computed(() => {
     return true;
   }
   return false;
-});
-
-const availableBeltTypes = computed(() => {
-  const { ...rest } = Object.keys(BeltType);
-  delete rest[5]; // Delete Crazy
-  return rest;
 });
 
 const copyURLToClipboard = () => {
