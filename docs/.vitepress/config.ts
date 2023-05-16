@@ -27,36 +27,12 @@ export default defineConfig({
         text: 'API',
         items: [
           {
-            text: 'Classes',
-            collapsed: true,
-            items: [{ text: 'BeltSystem', link: '/api/classes/belt-system' }]
+            text: 'Belt',
+            link: '/api/modules/belt'
           },
           {
-            text: 'Enums',
-            collapsed: true,
-            items: [
-              { text: 'Enum 1', link: '/api/enums/enum1' },
-              { text: 'Enum 2', link: '/api/enums/enum2' },
-              { text: 'Enum 3', link: '/api/enums/enum3' }
-            ]
-          },
-          {
-            text: 'Functions',
-            collapsed: true,
-            items: [
-              { text: 'Function 1', link: '/api/functions/function1' },
-              { text: 'Function 2', link: '/api/functions/function2' },
-              { text: 'Function 3', link: '/api/functions/function3' }
-            ]
-          },
-          {
-            text: 'Interfaces',
-            collapsed: true,
-            items: [
-              { text: 'Interface 1', link: '/api/interfaces/interface1' },
-              { text: 'Interface 2', link: '/api/interfaces/interface2' },
-              { text: 'Interface 3', link: '/api/interfaces/interface3' }
-            ]
+            text: 'BeltSystem',
+            link: '/api/modules/BeltSystem'
           }
         ]
       },
