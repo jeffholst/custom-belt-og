@@ -27,7 +27,7 @@
     <div v-else-if="selectedBeltGroup === 1" class="control">
       <SelectControl
         label="Belt"
-        :available-options="Object.keys(BeltType)"
+        :available-options="BeltTypeStandard"
         :selected-option="selectedCustomBelt"
         :callback="pickBeltCustom"
         :show-nav="false"
@@ -68,7 +68,10 @@ import {
   BeltSystem,
   type Belt,
   BeltType,
-  StripePosition
+  // @ts-ignore
+  BeltTypeStandard,
+  StripePosition,
+  getBeltColorCount
 } from 'vue-custom-belt';
 import CopyToClipboard from './CopyToClipboard.vue';
 import SelectControl from './SelectControl.vue';
@@ -150,28 +153,12 @@ const pickBeltIBJJF = (newBeltName: string) => {
 };
 
 const pickBeltCustom = (newBeltType: BeltType) => {
-  setColorCount(newBeltType);
+  const count: number | undefined = getBeltColorCount(newBeltType);
+  if (count) {
+    colorCount.value = count;
+  }
   selectedCustomBelt.value = newBeltType;
   updateBeltCustom();
-};
-
-const setColorCount = (beltType: BeltType) => {
-  switch (beltType) {
-    case 'Solid':
-      colorCount.value = 1;
-      break;
-    case 'Coral':
-    case 'Split':
-    case 'Checkered':
-      colorCount.value = 2;
-      break;
-    case 'Striped':
-      colorCount.value = 3;
-      break;
-    case 'Crazy':
-      colorCount.value = 0;
-      break;
-  }
 };
 
 const updateStripeCount = (newValue: number) => {
