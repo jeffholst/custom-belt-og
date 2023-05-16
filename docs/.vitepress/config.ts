@@ -28,7 +28,7 @@ export default defineConfig({
         items: [
           {
             text: 'Belt',
-            link: '/api/modules/belt'
+            link: '/api/modules/Belt'
           },
           {
             text: 'BeltSystem',
