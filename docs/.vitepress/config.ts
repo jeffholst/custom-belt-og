@@ -27,12 +27,35 @@ export default defineConfig({
         text: 'API',
         items: [
           {
-            text: 'Belt',
-            link: '/api/modules/Belt'
+            text: 'Modules',
+            collapsed: true,
+            items: [{ text: 'Belt', link: '/api/modules/Belt' }]
           },
           {
-            text: 'BeltSystem',
-            link: '/api/modules/BeltSystem'
+            text: 'Classes',
+            collapsed: true,
+            items: [{ text: 'BeltSystem', link: '/api/classes/BeltSystem.BeltSystem' }]
+          },
+          {
+            text: 'Enums',
+            collapsed: true,
+            items: [
+              { text: 'BeltCallbackType', link: '/api/enums/Belt.BeltCallbackType' },
+              { text: 'BeltType', link: '/api/enums/Belt.BeltType' },
+              { text: 'BeltTypeStandard', link: '/api/enums/Belt.BeltTypeStandard' },
+              { text: 'StripePosition', link: '/api/enums/Belt.StripePosition' }
+            ]
+          },
+          {
+            text: 'Interfaces',
+            collapsed: true,
+            items: [
+              { text: 'Belt', link: '/api/interfaces/Belt.Belt' },
+              { text: 'BeltColor', link: '/api/interfaces/Belt.BeltColor' },
+              { text: 'BeltProps', link: '/api/interfaces/Belt.BeltProps' },
+              { text: 'BeltRDF', link: '/api/interfaces/Belt.BeltRDF' },
+              { text: 'RandomSettings', link: '/api/interfaces/Belt.RandomSettings' }
+            ]
           }
         ]
       },
