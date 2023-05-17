@@ -502,7 +502,7 @@ ___
 
 ▸ **getBeltRDF**(`belt`, `about?`): [`BeltRDF`](../interfaces/Belt.BeltRDF.md)
 
-Create new BeltRDF object used in <svg> metadata
+Create new BeltRDF object used in svg metadata
 
 #### Parameters
 
