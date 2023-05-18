@@ -62,7 +62,10 @@ export default defineConfig({
       { text: `Version: ${version}` }
     ],
     search: {
-      provider: 'local'
+      provider: 'local',
+      options: {
+        disableDetailedView: true
+      }
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/jeffholst/custom-belt' }],
