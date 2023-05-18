@@ -7,10 +7,10 @@
 import { ref } from 'vue';
 import { BeltType, CustomBelt, getBeltPropsRandom } from 'vue-custom-belt';
 
-const props = defineProps({ showRefresh: Boolean });
+defineProps({ showRefresh: Boolean });
 
 const randomBelt = ref(
-  getBeltPropsRandom(true, false, 0, undefined, undefined, [
+  getBeltPropsRandom(undefined, undefined, undefined, undefined, undefined, [
     BeltType.Solid,
     BeltType.Striped,
     BeltType.Coral,
@@ -21,7 +21,7 @@ const randomBelt = ref(
 );
 
 const refresh = () => {
-  randomBelt.value = getBeltPropsRandom(true, false, 0, undefined, undefined, [
+  randomBelt.value = getBeltPropsRandom(undefined, undefined, undefined, undefined, undefined, [
     BeltType.Solid,
     BeltType.Striped,
     BeltType.Coral,
