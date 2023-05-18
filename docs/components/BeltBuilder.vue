@@ -56,6 +56,7 @@
     <CheckedBeltsGroup :callback="updateCheckedRandomBelts" />
   </div>
   <CopyToClipboard :allowCopyToClipboard="allowCopyToClipboard" :callback="copyURLToClipboard" />
+  <div style="text-align: center">Double click belt to download</div>
 </template>
 
 <script setup lang="ts">
